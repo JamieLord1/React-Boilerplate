@@ -1,26 +1,64 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { lazy, Suspense, useState } from 'react';
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link,
+} from 'react-router-dom';
+import Modal from './Components/Modal';
+
+const Button = lazy(() => import('./Components/Button'))
+const Home = lazy(() => import('./Views/Home'))
+
+const renderLoader = () => <p>loading</p>
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [isOpen, setIsOpen] = useState(false)
+	return (
+		<Suspense fallback={renderLoader()}>
+			<Router>
+				<>
+					<nav>
+						<ul>
+							<li>
+								<Link to="/home">Home</Link>
+							</li>
+							<li>
+								<Link to="/about">About</Link>
+							</li>
+							<li>
+								<Link to="/users">Users</Link>
+							</li>
+						</ul>
+					</nav>
+					<Switch>
+						<Route exact path="/">
+							<Button>Contact Us</Button>
+							<div>
+								<button type="button" onClick={() => setIsOpen(true)}>Open Modal</button>
+								<Modal open={isOpen} onClose={() => setIsOpen(false)}>
+									<h2>Hi</h2>
+									<h2>Hi</h2>
+									<h2>Hi</h2>
+									<h2>Hi</h2>
+									<h2>Hi</h2>
+									<h2>Hi</h2>
+									<h2>Hi</h2>
+									<h2>Hi</h2>
+									<div style={{ width: 500 }} />
+
+								</Modal>
+							</div>
+							<div>Other Content</div>
+						</Route>
+						<Route path="/home">
+							<Home />
+						</Route>
+					</Switch>
+				</>
+			</Router>
+		</Suspense>
+	);
 }
 
 export default App;
