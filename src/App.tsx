@@ -5,9 +5,9 @@ import {
 	Route,
 	Link,
 } from 'react-router-dom';
-import Modal from './components1/Modal';
+import Modal from './components/Modal';
 
-const Button = lazy(() => import('./components1/Button'))
+const Button = lazy(() => import('./components/Button'))
 const Home = lazy(() => import('./views1/Home'))
 
 const renderLoader = () => <p>loading</p>
