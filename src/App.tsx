@@ -8,7 +8,7 @@ import {
 import Modal from './components/Modal';
 
 const Button = lazy(() => import('./components/Button'))
-const Home = lazy(() => import('./views1/Home'))
+const Home = lazy(() => import('./views/Home'))
 
 const renderLoader = () => <p>loading</p>
 
