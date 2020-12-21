@@ -1,11 +1,14 @@
 import React, { lazy, Suspense, useState } from 'react';
+import toast from 'react-hot-toast';
 import {
 	BrowserRouter as Router,
 	Switch,
 	Route,
 	Link,
 } from 'react-router-dom';
+import Input from './components/Input';
 import Modal from './components/Modal';
+// import Notification from './components/Notification';
 
 const Button = lazy(() => import('./components/Button'))
 const Home = lazy(() => import('./views/Home'))
@@ -38,18 +41,13 @@ function App() {
 								<button type="button" onClick={() => setIsOpen(true)}>Open Modal</button>
 								<Modal open={isOpen} onClose={() => setIsOpen(false)}>
 									<h2>Hi</h2>
-									<h2>Hi</h2>
-									<h2>Hi</h2>
-									<h2>Hi</h2>
-									<h2>Hi</h2>
-									<h2>Hi</h2>
-									<h2>Hi</h2>
-									<h2>Hi</h2>
 									<div style={{ width: 500 }} />
-
 								</Modal>
 							</div>
 							<div>Other Content</div>
+							<button type="button" onClick={() => toast.success('Notifcation')}>Test</button>
+							<br />
+							<Input type="password" />
 						</Route>
 						<Route path="/home">
 							<Home />

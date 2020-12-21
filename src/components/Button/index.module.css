@@ -11,5 +11,5 @@
 }
 
 .buttonStyle:focus {
-	box-shadow: 0 0 0 2pt black;
+	box-shadow: 0 0 0 1pt var(--primary);
 }

@@ -11,10 +11,10 @@ it('Modal shows the children and a close button', () => {
 
 	// Act
 	render(
-		<Modal open onClose={handleClose}><div>test</div></Modal>,
+		<Modal open onClose={handleClose}><div>Hi</div></Modal>,
 	)
 	// Assert
-	expect(screen.getByText('test')).toBeTruthy()
+	expect(screen.getByText('Hi')).toBeTruthy()
 
 	// Act
 	userEvent.click(screen.getByText('Close Modal'))
@@ -29,10 +29,10 @@ it('Modal shows the children and closes via overlay', () => {
 
 	// Act
 	render(
-		<Modal open onClose={handleClose}><div>test</div></Modal>,
+		<Modal open onClose={handleClose}><div>Hi</div></Modal>,
 	)
 	// Assert
-	expect(screen.getByText('test')).toBeTruthy()
+	expect(screen.getByText('Hi')).toBeTruthy()
 
 	// Act
 	userEvent.click(screen.getByTestId('overlay'))
@@ -41,12 +41,12 @@ it('Modal shows the children and closes via overlay', () => {
 	expect(handleClose).toHaveBeenCalledTimes(1)
 });
 
-test('Modal returns null when closed', () => {
+it('Modal returns null when closed', () => {
 	// Arrange
 	const handleClose = jest.fn()
 
 	// Act
 	render(
-		<Modal open={false} onClose={handleClose}><div>test</div></Modal>,
+		<Modal open={false} onClose={handleClose}><div>Hi</div></Modal>,
 	)
 })
