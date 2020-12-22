@@ -3,7 +3,15 @@ import { render } from '@testing-library/react';
 import Button from '../index';
 
 it('Buttons return correct data', () => {
-	const { getByText } = render(<Button>Contact Us</Button>)
+	// Arrange
+	const handleOnClick = jest.fn()
+
+	// Assert
+	const { getByText } = render(<Button onClick={handleOnClick}>Contact Us</Button>)
+
+	// Act
 	getByText('Contact Us').click()
-	getByText('Contact Us')
+
+	// Assert
+	expect(handleOnClick).toHaveBeenCalledTimes(1)
 });
