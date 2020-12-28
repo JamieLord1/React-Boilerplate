@@ -1,32 +1,51 @@
-div.form-field {
+.formField {
 	display: block;
 	margin-bottom: 16px;
-  }
+}
 
-  div.form-field.is-focused .control::after {
+.formField.isFocused .control::after {
 	border-bottom: 2px solid rgb(69, 134, 231);
 	transform: scaleX(150);
-  }
+}
 
-  div.form-field.is-focused .control label {
+.formField.isFocused .control .label {
 	color: rgb(69, 134, 231);
 	font-size: 0.75rem;
 	transform: translateY(-14px);
-  }
+}
 
-  div.form-field.has-value .control label {
+.formField.error .control::after {
+	border-bottom: 2px solid red;
+	transform: scaleX(150);
+}
+
+.formField.error .control .label {
+	color: red;
 	font-size: 0.75rem;
 	transform: translateY(-14px);
-  }
+}
 
-  div.form-field .control {
+.validation {
+	color: red;
+	font-size: 0.75rem;
+	right: 5px;
+	top: 0px;
+	position: absolute;
+}
+
+.formField.hasValue .control .label {
+	font-size: 0.75rem;
+	transform: translateY(-14px);
+}
+
+.formField .control {
 	border-radius: 8px 8px 0 0;
 	overflow: hidden;
 	position: relative;
 	width: 100%;
-  }
+}
 
-  div.form-field .control::after {
+.formField .control::after {
 	border-bottom: 2px solid rgb(69, 134, 231);
 	bottom: 0;
 	content: "";
@@ -38,9 +57,9 @@ div.form-field {
 	transform: scaleX(0);
 	transition: all 400ms;
 	width: 1%;
-  }
+}
 
-  div.form-field .control input {
+.formField .control input {
 	appearance: none;
 	background: transparent;
 	border: 0;
@@ -52,9 +71,9 @@ div.form-field {
 	outline: 0;
 	padding: 0 12px 10px 12px;
 	width: 100%;
-  }
+}
 
-  div.form-field .control label {
+.formField .control .label {
 	display: block;
 	font-size: 1.2rem;
 	font-weight: normal;
@@ -65,4 +84,4 @@ div.form-field {
 	top: 0;
 	transition: all 400ms;
 	width: 100%;
-  }
+}

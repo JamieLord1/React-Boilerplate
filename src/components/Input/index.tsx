@@ -1,6 +1,5 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react'
-import './index.css'
+import styles from './index.module.css'
 
 interface Props {
 	type?: string;
@@ -14,19 +13,35 @@ const Input: React.FC<Props> = ({
 }) => {
 	const [focused, setFocused] = useState(false);
 	const [value, setValue] = useState('');
+	const [valid, setValid] = useState(true)
 
 	const handleOnChange = (e: any) => {
 		setValue(e.target.value)
 		onChange(e.target.value)
+		setValid(!!e.target.value)
 	}
+
+	const handleOnBlur = () => {
+		setFocused(false)
+		setValid(!!value)
+	}
+
 	return (
 		<div
-			className={`form-field ${focused ? 'is-focused' : ''} ${
-				value.length > 0 ? 'has-value' : ''
-			}`}
+			className={`
+			${styles.formField}
+			${focused ? styles.isFocused : ''}
+			${value.length > 0 ? styles.hasValue : ''}
+			${valid ? '' : styles.error}
+			`}
 		>
-			<div className="control">
-				<label htmlFor={id}>{label}</label>
+			<div className={styles.control}>
+				<label className={styles.label} htmlFor={id}>{label}</label>
+				{
+					valid
+						? null
+						: <span className={styles.validation}>Please enter a valid email address</span>
+				}
 				<input
 					style={style}
 					id={id}
@@ -34,7 +49,7 @@ const Input: React.FC<Props> = ({
 					value={value}
 					onChange={handleOnChange}
 					onFocus={() => setFocused(true)}
-					onBlur={() => setFocused(false)}
+					onBlur={handleOnBlur}
 				/>
 			</div>
 		</div>
