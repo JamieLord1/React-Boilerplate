@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC, useEffect, useRef } from 'react'
 import ReactDOM from 'react-dom'
 import styles from './index.module.css'
 
@@ -15,19 +15,19 @@ if (!modalRoot) {
 	document.body.appendChild(modalRoot)
 }
 
-const Modal: React.FC<Props> = ({ open, children, onClose }) => {
+const Modal: FC<Props> = ({ open, children, onClose }) => {
 	if (!open) return null
 
-	const container = React.useRef(document.createElement('div'))
+	const container = useRef(document.createElement('div'))
 
-	const isVisible = (e:any) => {
+	const isVisible = (e: any) => {
 		if (container.current.contains(e.target)) {
 			onClose()
 			window.removeEventListener('click', isVisible)
 		}
 	}
 
-	React.useEffect(() => {
+	useEffect(() => {
 		window.addEventListener('click', isVisible)
 		return () => {
 			window.removeEventListener('click', isVisible)

@@ -9,7 +9,11 @@ type RippleArray = {
 	size: number;
 }
 
-const useDebouncedRippleCleanUp:Function = (rippleCount: number, duration: number, cleanUpFunction: Function) => {
+interface Props {
+	ariaLabel: string
+}
+
+const useDebouncedRippleCleanUp: Function = (rippleCount: number, duration: number, cleanUpFunction: Function) => {
 	useLayoutEffect(() => {
 		let bounce: any = null;
 		if (rippleCount > 0) {
@@ -25,8 +29,8 @@ const useDebouncedRippleCleanUp:Function = (rippleCount: number, duration: numbe
 	}, [rippleCount, duration, cleanUpFunction]);
 };
 
-const Ripple:React.FC = () => {
-	const [rippleArray, setRippleArray] = useState <Array<RippleArray>>([]);
+const Ripple: React.FC<Props> = ({ ariaLabel }) => {
+	const [rippleArray, setRippleArray] = useState<Array<RippleArray>>([]);
 
 	useDebouncedRippleCleanUp(rippleArray.length, 850, () => {
 		setRippleArray([]);
@@ -49,20 +53,20 @@ const Ripple:React.FC = () => {
 	};
 
 	return (
-		<div role="button" tabIndex={0} className={styles.rippleContainer} onMouseDown={addRipple}>
+		<div role="button" aria-label={ariaLabel} tabIndex={0} className={styles.rippleContainer} onMouseDown={addRipple}>
 			{rippleArray.length > 0
-		&& 				rippleArray.map((ripple: RippleArray, index: number) => (
-			<span
-				className={styles.ripple}
-				key={`span${index}`}
-				style={{
-					top: ripple.y,
-					left: ripple.x,
-					width: ripple.size,
-					height: ripple.size,
-				}}
-			/>
-		))}
+				&& rippleArray.map((ripple: RippleArray, index: number) => (
+					<span
+						className={styles.ripple}
+						key={`span${index}`}
+						style={{
+							top: ripple.y,
+							left: ripple.x,
+							width: ripple.size,
+							height: ripple.size,
+						}}
+					/>
+				))}
 		</div>
 	);
 };

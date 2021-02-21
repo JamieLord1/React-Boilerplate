@@ -14,16 +14,14 @@ function App() {
 	return (
 		<Suspense fallback={renderLoader()}>
 			<Router>
-				<>
-					<Switch>
-						<Route exact path="/">
-							<Login />
-						</Route>
-						<Route path="/home">
-							<Home />
-						</Route>
-					</Switch>
-				</>
+				<Switch>
+					<Route exact path="/">
+						<Login />
+					</Route>
+					<Route path="/home">
+						<Home />
+					</Route>
+				</Switch>
 			</Router>
 		</Suspense>
 	);
